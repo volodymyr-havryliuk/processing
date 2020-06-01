@@ -28,7 +28,7 @@ options(digits=4)
 setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing")
 getwd()
 
-features <- read.csv("selected.csv", header=T)
+features <- read.csv("selected_2.csv", header=T)
 
 #features <- read.table("../../selected.csv", header=TRUE, sep=",", nrows = 200)
 features$Author <- as.character(features$Author)
@@ -46,9 +46,9 @@ features_groupped_by_month$CS70_2
 
 
 
-#attach(features_grouped_by_date)
+attach(features_grouped_by_date)
 
-attach(features_groupped_by_month)
+#attach(features_groupped_by_month)
 
 
 
