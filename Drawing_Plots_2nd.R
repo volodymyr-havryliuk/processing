@@ -49,7 +49,7 @@ cs_80_rd_y <- c(0)
 
 lim <- as.Date(c("2016-01-01", "2020-06-01"))
 
-setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing\\2nd attempt")
+setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing")
 getwd()
 
 
@@ -58,7 +58,7 @@ pdf(width=12, "CS70_1_month.pdf")
 #dev.new()
 opar_start <- par(no.readonly=TRUE)
 par(xpd = T, mar = par()$mar + c(0,0,0,10))
-plot(month, CS70_1, type = "l",xlab="Date", ylab="Feature Occurrence", xlim=lim)
+plot(month, CS70_1, type = "l",xlab="Date", ylab="Number of occurrences, times", xlim=lim)
 
 opar <- par(no.readonly=TRUE)
 par(pch=19, xpd = F)
@@ -83,7 +83,7 @@ pdf(width=12, "CS70_2_month.pdf")
 #dev.new()
 opar_start <- par(no.readonly=TRUE)
 par(xpd = T, mar = par()$mar + c(0,0,0,10))
-plot(month, feature, type = "l",xlab="Date", ylab="Feature Occurrence", xlim=lim)
+plot(month, feature, type = "l",xlab="Date", ylab="Number of occurrences, times", xlim=lim)
 
 opar <- par(no.readonly=TRUE)
 par(pch=19, xpd = F)
@@ -107,7 +107,7 @@ pdf(width=12, "CS70_3_month.pdf")
 #dev.new()
 opar_start <- par(no.readonly=TRUE)
 par(xpd = T, mar = par()$mar + c(0,0,0,10))
-plot(month, feature, type = "l",xlab="Date", ylab="Feature Occurrence", xlim=lim)
+plot(month, feature, type = "l",xlab="Date", ylab="Number of occurrences, times", xlim=lim)
 
 opar <- par(no.readonly=TRUE)
 par(pch=19, xpd = F)
