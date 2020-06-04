@@ -8,6 +8,8 @@ set.seed(2017)
 options(digits=4)
 Sys.setlocale("LC_TIME", "English")
 
+setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing")
+getwd()
 
 features <- read.csv("usage_results.csv", header=T)
 features$DateTime <- as.Date(features$DateTime, format = "%m/%d/%Y %H:%M:%S")
@@ -17,8 +19,7 @@ features$FileName <- as.character(features$FileName)
 selected_2 <- features %>% select(Id,Author,DateTime,CS70_1,CS70_2,CS70_3,CS70_5,CS70_6,CS70_7,CS70_8,CS70_9,CS71_1,CS71_2,CS71_3,CS72_1,CS73_1,CS73_2,CS80_2,CS80_3,CS80_4,CS80_6,CS80_7,CS80_8,CS80_9)
 fwrite(selected_2, "selected_2.csv")
 
-setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing")
-getwd()
+
 
 selected_features <- read.csv("selected_2.csv", header=T)
 selected_features$Author <- as.character(selected_features$Author)
@@ -33,9 +34,7 @@ features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_mont
 
 
 
-
-
-anova_df <- data.frame(
+anova_df_cs7 <- data.frame(
   Occurrences = c(features_groupped_by_month_after_2016[,"CS70_1"],
     features_groupped_by_month_after_2016[,"CS70_2"],
     features_groupped_by_month_after_2016[,"CS70_3"],
@@ -49,14 +48,7 @@ anova_df <- data.frame(
     features_groupped_by_month_after_2016[,"CS71_3"],
     features_groupped_by_month_after_2016[,"CS72_1"],
     features_groupped_by_month_after_2016[,"CS73_1"],
-    features_groupped_by_month_after_2016[,"CS73_2"],
-    features_groupped_by_month_after_2016[,"CS80_2"],
-    features_groupped_by_month_after_2016[,"CS80_3"],
-    features_groupped_by_month_after_2016[,"CS80_4"],
-    features_groupped_by_month_after_2016[,"CS80_6"],
-    features_groupped_by_month_after_2016[,"CS80_7"],
-    features_groupped_by_month_after_2016[,"CS80_8"],
-    features_groupped_by_month_after_2016[,"CS80_9"]
+    features_groupped_by_month_after_2016[,"CS73_2"]
     )
   )
 
@@ -74,22 +66,15 @@ FeatureId <- append (FeatureId,  rep(c("CS71_3"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS72_1"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS73_1"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS73_2"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_2"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_3"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_4"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_6"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_7"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_8"), times = 53))
-FeatureId <- append (FeatureId,  rep(c("CS80_9"), times = 53))
 
-anova_df$FeatureId = FeatureId
-anova_df$FeatureId <- as.factor(anova_df$FeatureId)
+anova_df_cs7$FeatureId = FeatureId
+anova_df_cs7$FeatureId <- as.factor(anova_df_cs7$FeatureId)
 
-fwrite(anova_df, "anova_df.csv")
+fwrite(anova_df_cs7, "anova_df_cs7.csv")
 
-levels(anova_df$FeatureId)
+levels(anova_df_cs7$FeatureId)
 
-group_by(anova_df, FeatureId) %>%
+group_by(anova_df_cs7, FeatureId) %>%
   summarise(
     count = n(),
     mean = mean(Occurrences, na.rm = TRUE),
@@ -98,24 +83,77 @@ group_by(anova_df, FeatureId) %>%
 
 
 library("ggpubr")
-ggboxplot(anova_df, x = "FeatureId", y = "Occurrences", 
+ggboxplot(anova_df_cs7, x = "FeatureId", y = "Occurrences", 
           color = "FeatureId", 
           ylab = "Occurrences", xlab = "FeatureId")
 
-ggline(anova_df, x = "FeatureId", y = "Occurrences", 
+ggline(anova_df_cs7, x = "FeatureId", y = "Occurrences", 
        add = c("mean_se", "jitter"), 
        ylab = "Occurrences", xlab = "FeatureId")
 
-res.aov <- aov(Occurrences ~ FeatureId, data = anova_df)
+res.aov <- aov(Occurrences ~ FeatureId, data = anova_df_cs7)
 summary(res.aov)
 
 TukeyHSD(res.aov)
 plot(res.aov, 1)
 
 library(car)
-leveneTest(Occurrences ~ FeatureId, data = anova_df)
+leveneTest(Occurrences ~ FeatureId, data = anova_df_cs7)
 
 #https://www.statisticssolutions.com/the-assumption-of-homogeneity-of-variance/
 
 
 
+
+anova_df_cs8 <- data.frame(
+  Occurrences = c(features_groupped_by_month_after_2016[,"CS80_2"],
+                  features_groupped_by_month_after_2016[,"CS80_3"],
+                  features_groupped_by_month_after_2016[,"CS80_4"],
+                  features_groupped_by_month_after_2016[,"CS80_6"],
+                  features_groupped_by_month_after_2016[,"CS80_7"],
+                  features_groupped_by_month_after_2016[,"CS80_8"],
+                  features_groupped_by_month_after_2016[,"CS80_9"]
+  )
+)
+
+FeatureId <-c()
+FeatureId <- append (FeatureId,  rep(c("CS80_2"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_3"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_4"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_6"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_7"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_8"), times = 53))
+FeatureId <- append (FeatureId,  rep(c("CS80_9"), times = 53))
+
+anova_df_cs8$FeatureId = FeatureId
+anova_df_cs8$FeatureId <- as.factor(anova_df_cs8$FeatureId)
+
+fwrite(anova_df_cs8, "anova_df_cs8.csv")
+
+levels(anova_df_cs8$FeatureId)
+
+
+group_by(anova_df_cs8, FeatureId) %>%
+  summarise(
+    count = n(),
+    mean = mean(Occurrences, na.rm = TRUE),
+    sd = sd(Occurrences, na.rm = TRUE)
+  )
+
+library("ggpubr")
+ggboxplot(anova_df_cs8, x = "FeatureId", y = "Occurrences", 
+          color = "FeatureId", 
+          ylab = "Occurrences", xlab = "FeatureId")
+
+ggline(anova_df_cs8, x = "FeatureId", y = "Occurrences", 
+       add = c("mean_se", "jitter"), 
+       ylab = "Occurrences", xlab = "FeatureId")
+
+res.aov <- aov(Occurrences ~ FeatureId, data = anova_df_cs8)
+summary(res.aov)
+
+TukeyHSD(res.aov)
+plot(res.aov, 1)
+
+library(car)
+leveneTest(Occurrences ~ FeatureId, data = anova_df_cs7)
