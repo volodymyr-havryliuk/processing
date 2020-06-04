@@ -33,15 +33,409 @@ features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_mont
 
 cs_70_rd_x <- as.Date(c("2017-03-01"))
 
-dev.new()
+pdf(width=12, "CS70_1_month_ggplot2.pdf")
+#dev.new()
 CS70_1_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_1)) +
-  ggtitle("CS70_1. Out variables") +
-  geom_line(size = 1.2, color ="#00ace6") +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
   geom_point(size = 1.5) +
-  geom_smooth(method = "lm",se=FALSE, color="#116315", size = 0.5)+
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle("CS70_1. Out variables.") +
   xlab("Time") +
   ylab("Occurrence, times") +
-  geom_vline(xintercept=cs_70_rd_x , linetype="dashed", color = "blue")
-
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
 CS70_1_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+
+feature_id="CS70_2"
+feature_name="Pattern matching."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf"))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_2)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_3"
+feature_name="Ref locals and returns."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_3)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_5"
+feature_name="More expression-bodied members."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_5)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_6"
+feature_name="Throw expressions."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_6)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_7"
+feature_name="Generalized async return types."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_7)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_8"
+feature_name="Numeric literal syntax improvements."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_8)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS70_9"
+feature_name="Discards."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS70_9)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_70_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+cs_71_rd_x <- as.Date(c("2017-08-01"))
+
+feature_id="CS71_1"
+feature_name="Async main method."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS71_1)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_71_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.1 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS71_2"
+feature_name="Default literal expressions."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS71_2)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_71_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.1 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS71_3"
+feature_name="Inferred tuple element names."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS71_3)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_71_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.1 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+cs_72_rd_x <- as.Date(c("2017-11-01"))
+
+
+feature_id="CS72_1"
+feature_name="Leading underscores in numeric literals."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS72_1)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_72_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.2 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+cs_73_rd_x <- as.Date(c("2018-05-01"))
+
+feature_id="CS73_1"
+feature_name="Attaching attributes to the backing fields for auto-implemented properties."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS73_1)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_73_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.3 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS73_2"
+feature_name="Enhanced generic constraints."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS73_2)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_73_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 7.3 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+cs_80_rd_x <- as.Date(c("2019-09-01"))
+
+feature_id="CS80_2"
+feature_name="Switch expressions."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_2)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+
+feature_id="CS80_3"
+feature_name="Using declarations."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_3)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+
+feature_id="CS80_4"
+feature_name="Property patterns."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_4)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+
+feature_id="CS80_6"
+feature_name="Index from end operator."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_6)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS80_7"
+feature_name="Ranges."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_7)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+
+feature_id="CS80_8"
+feature_name="Null-coalescing assignment."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_8)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
+
+
+feature_id="CS80_9"
+feature_name="Struct Readonly Members."
+pdf(width=12, paste(feature_id, "_month_ggplot2.pdf",sep = ""))
+#dev.new()
+feature_plot <- ggplot(features_groupped_by_month_after_2016, aes(x=month, y=CS80_9)) +
+  geom_line(aes(color="#00ace6"),size = 1.1) +
+  geom_point(size = 1.5) +
+  geom_smooth(method = "lm",se=FALSE,aes(color="#116315"),size = 0.5)+
+  geom_vline(aes(xintercept=cs_80_rd_x,color = "blue"),linetype="dashed")+
+  ggtitle(paste(feature_id, feature_name, sep = ". ")) +
+  xlab("Time") +
+  ylab("Occurrence, times") +
+  scale_colour_manual(name = 'Legend', 
+                      values =c("#00ace6"="#00ace6","#116315"="#116315","blue"="blue"), labels = c("Occurrence","Regression","C# 8.0 Release date"))
+feature_plot+scale_x_date(date_breaks = "4 months", date_labels = "%m-%Y")
+dev.off()
+
 
