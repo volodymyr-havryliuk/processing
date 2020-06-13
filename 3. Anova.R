@@ -11,48 +11,48 @@ Sys.setlocale("LC_TIME", "English")
 setwd("D:\\Education\\PUT\\3d semester\\Master Thesis\\DataProcessing")
 getwd()
 
+# 1. Load data, select needed features and keep only data after 2016-01-01
 features <- read.csv("usage_results.csv", header=T)
 features$DateTime <- as.Date(features$DateTime, format = "%m/%d/%Y %H:%M:%S")
 features$Repository <- as.character(features$Repository)
 features$FileName <- as.character(features$FileName)
 
-selected_2 <- features %>% select(Id,Author,DateTime,CS70_1,CS70_2,CS70_3,CS70_5,CS70_6,CS70_7,CS70_8,CS70_9,CS71_1,CS71_2,CS71_3,CS72_1,CS73_1,CS73_2,CS80_2,CS80_3,CS80_4,CS80_6,CS80_7,CS80_8,CS80_9)
-fwrite(selected_2, "selected_2.csv")
+selected_features <- features %>% select(Id,Author,DateTime,CS70_1,CS70_2,CS70_3,CS70_5,CS70_6,CS70_7,CS70_8,CS70_9,CS71_1,CS71_2,CS71_3,CS72_1,CS73_1,CS73_2,CS80_2,CS80_3,CS80_4,CS80_6,CS80_7,CS80_8,CS80_9)
 
-
-
-selected_features <- read.csv("selected_2.csv", header=T)
-selected_features$Author <- as.character(selected_features$Author)
-selected_features$DateTime <- as.Date(selected_features$DateTime, format = "%Y-%m-%d")
+#fwrite(selected_features, "selected_features.csv")
+#selected_features <- read.csv("selected_features.csv", header=T)
+#selected_features$Author <- as.character(selected_features$Author)
+#selected_features$DateTime <- as.Date(selected_features$DateTime, format = "%Y-%m-%d")
 
 features_groupped_by_month <- selected_features %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
 features_groupped_by_month_after_2016 <- subset(features_groupped_by_month, month >= as.Date("2016-01-01"))
+features_groupped_by_month_after_2016 <-data.frame(features_groupped_by_month_after_2016)
+#fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
+#features_groupped_by_month_after_2016 <- read.csv("features_groupped_by_month_after_2016.csv", header=T)
+#features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_month_after_2016$month)
 
-fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
-features_groupped_by_month_after_2016 <- read.csv("features_groupped_by_month_after_2016.csv", header=T)
-features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_month_after_2016$month)
-
-
+# 2. Prepare C#7.0-7.3 data for ANOVA
 
 anova_df_cs7 <- data.frame(
   Occurrences = c(features_groupped_by_month_after_2016[,"CS70_1"],
-    features_groupped_by_month_after_2016[,"CS70_2"],
-    features_groupped_by_month_after_2016[,"CS70_3"],
-    features_groupped_by_month_after_2016[,"CS70_5"],
-    features_groupped_by_month_after_2016[,"CS70_6"],
-    features_groupped_by_month_after_2016[,"CS70_7"],
-    features_groupped_by_month_after_2016[,"CS70_8"],
-    features_groupped_by_month_after_2016[,"CS70_9"],
-    features_groupped_by_month_after_2016[,"CS71_1"],
-    features_groupped_by_month_after_2016[,"CS71_2"],
-    features_groupped_by_month_after_2016[,"CS71_3"],
-    features_groupped_by_month_after_2016[,"CS72_1"],
-    features_groupped_by_month_after_2016[,"CS73_1"],
-    features_groupped_by_month_after_2016[,"CS73_2"]
+      features_groupped_by_month_after_2016[,"CS70_2"],
+      features_groupped_by_month_after_2016[,"CS70_3"],
+      features_groupped_by_month_after_2016[,"CS70_5"],
+      features_groupped_by_month_after_2016[,"CS70_6"],
+      features_groupped_by_month_after_2016[,"CS70_7"],
+      features_groupped_by_month_after_2016[,"CS70_8"],
+      features_groupped_by_month_after_2016[,"CS70_9"],
+      features_groupped_by_month_after_2016[,"CS71_1"],
+      features_groupped_by_month_after_2016[,"CS71_2"],
+      features_groupped_by_month_after_2016[,"CS71_3"],
+      features_groupped_by_month_after_2016[,"CS72_1"],
+      features_groupped_by_month_after_2016[,"CS73_1"],
+      features_groupped_by_month_after_2016[,"CS73_2"]
     )
   )
 
-FeatureId <- rep(c("CS70_1"), times = 53)
+FeatureId <-c()
+FeatureId <- append (FeatureId,  rep(c("CS70_1"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS70_2"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS70_3"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS70_5"), times = 53))
@@ -67,20 +67,20 @@ FeatureId <- append (FeatureId,  rep(c("CS72_1"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS73_1"), times = 53))
 FeatureId <- append (FeatureId,  rep(c("CS73_2"), times = 53))
 
-anova_df_cs7$FeatureId = FeatureId
+anova_df_cs7$FeatureId=FeatureId
 anova_df_cs7$FeatureId <- as.factor(anova_df_cs7$FeatureId)
 
 fwrite(anova_df_cs7, "anova_df_cs7.csv")
-
 levels(anova_df_cs7$FeatureId)
 
+
+# 3. Compute summary statistics by groups - count, mean, sd. Draw plots and apply ANOVA for C#7.0-7.3 features.
 group_by(anova_df_cs7, FeatureId) %>%
   summarise(
     count = n(),
     mean = mean(Occurrences, na.rm = TRUE),
     sd = sd(Occurrences, na.rm = TRUE)
   )
-
 
 library("ggpubr")
 ggboxplot(anova_df_cs7, x = "FeatureId", y = "Occurrences", 
@@ -97,13 +97,10 @@ summary(res.aov)
 TukeyHSD(res.aov)
 plot(res.aov, 1)
 
-library(car)
-leveneTest(Occurrences ~ FeatureId, data = anova_df_cs7)
-
 #https://www.statisticssolutions.com/the-assumption-of-homogeneity-of-variance/
 
 
-
+# 4. Prepare C#8.0 data for ANOVA
 
 anova_df_cs8 <- data.frame(
   Occurrences = c(features_groupped_by_month_after_2016[,"CS80_2"],
@@ -132,6 +129,7 @@ fwrite(anova_df_cs8, "anova_df_cs8.csv")
 
 levels(anova_df_cs8$FeatureId)
 
+# 5. Compute summary statistics by groups - count, mean, sd. Draw plots and apply ANOVA for C#8.0 features.
 
 group_by(anova_df_cs8, FeatureId) %>%
   summarise(
@@ -154,6 +152,3 @@ summary(res.aov)
 
 TukeyHSD(res.aov)
 plot(res.aov, 1)
-
-library(car)
-leveneTest(Occurrences ~ FeatureId, data = anova_df_cs7)
