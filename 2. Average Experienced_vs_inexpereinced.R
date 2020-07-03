@@ -98,6 +98,6 @@ selected_features_for_less_experienced_devs <- subset(selected_features_for_less
 
 le_rowSums <- rowSums(selected_features_for_less_experienced_devs[-1])
 le_number_of_months = length(le_rowSums)
-le_devs_average = sum(le_rowSums)/number_of_months # ~ 350 per month    (10 less experienced developers used all 21 features 350 times per month)
+le_devs_average = sum(le_rowSums)/le_number_of_months # ~ 350 per month    (10 less experienced developers used all 21 features 350 times per month)
 le_devs_average
 
