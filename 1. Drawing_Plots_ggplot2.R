@@ -27,7 +27,7 @@ features_groupped_by_month <- selected_features %>% group_by(month=floor_date(Da
 features_groupped_by_month_after_2016 <- subset(features_groupped_by_month, month >= as.Date("2016-01-01"))
 
 #we can write data to file
-#fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
+fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
 #features_groupped_by_month_after_2016 <- read.csv("features_groupped_by_month_after_2016.csv", header=T)
 #features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_month_after_2016$month)
 
