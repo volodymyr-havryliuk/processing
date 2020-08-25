@@ -324,14 +324,14 @@ png(width     = 18,
     height    = 21,
     units     = "cm",
     res       = 1200,
-    filename="OccurrencesBoxPlot.png")
+    filename="OccurrencesBoxPlotBW.png")
 ggboxplot(anova_df_all,
           x = "FeatureId",
           y = "Occurrences", 
-          color = "FeatureId", 
+          color = "black", 
           ylab = "Occurrences",
           xlab = "Feature Id")+
-theme(axis.text.x = element_text(angle = 90, size = 10))
+theme(axis.text.x = element_text(angle = 90, size = 10), legend.position = "none")
 dev.off()
 
 png(width     = 18,
