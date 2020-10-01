@@ -44,19 +44,24 @@ most_experienced_devs = c("win",
 )
 
 selected_features_for_most_experienced_devs <- subset(selected_features, Author %in% most_experienced_devs)
-selected_features_for_most_experienced_devs <- selected_features %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
-#fwrite(selected_features_for_most_experienced_devs, "selected_features_for_most_experienced_devs.csv")
-#features_most_exp_devs <- read.csv("selected_features_for_most_experienced_devs_by_month.csv", header=T)
-#selected_features_for_most_experienced_devs$month <- as.Date(selected_features_for_most_experienced_devs$month)
+selected_features_for_most_experienced_devs_groupped_by_month <- selected_features_for_most_experienced_devs %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
+#fwrite(selected_features_for_most_experienced_devs_groupped_by_month, "selected_features_for_most_experienced_devs_groupped_by_month.csv")
+#features_most_exp_devs <- read.csv("selected_features_for_most_experienced_devs_by_month_groupped_by_month.csv", header=T)
+#selected_features_for_most_experienced_dev_groupped_by_months$month <- as.Date(selected_features_for_most_experienced_devs_groupped_by_month$month)
 
-#5. Select subset of data after 2016-01-01 and befor 2020-05-01 and calculate avarege occurrence of features for most experienced developers per month
+#5. Select subset of data after 2016-01-01 and before 2020-05-01 and calculate avarege occurrence of features for most experienced developers per month
+selected_features_for_most_experienced_devs_groupped_by_month <- subset(selected_features_for_most_experienced_devs_groupped_by_month, month >= as.Date("2016-01-01"))
+selected_features_for_most_experienced_devs_groupped_by_month <- subset(selected_features_for_most_experienced_devs_groupped_by_month, month < as.Date("2020-05-01"))
+#fwrite(selected_features_for_most_experienced_devs_groupped_by_month, "selected_features_for_most_experienced_devs_groupped_by_month.csv")
+
 selected_features_for_most_experienced_devs <- subset(selected_features_for_most_experienced_devs, month >= as.Date("2016-01-01"))
 selected_features_for_most_experienced_devs <- subset(selected_features_for_most_experienced_devs, month < as.Date("2020-05-01"))
+fwrite(selected_features_for_most_experienced_devs, "selected_features_for_most_experienced_devs.csv")
 
-me_rowSums <- rowSums(selected_features_for_most_experienced_devs[-1])
+me_rowSums <- rowSums(selected_features_for_most_experienced_devs_groupped_by_month[-1])
 me_number_of_months = length(me_rowSums)
 me_devs_average = sum(me_rowSums)/me_number_of_months # 
-me_devs_average # ~ 12286 per month     (10 most experienced developers used all 21 features 12286 times per month)
+me_devs_average # ~ 1412 per mont1h     (10 most experienced developers used all 21 features 12286 times per month)
 
 
 
@@ -87,16 +92,22 @@ less_experienced_devs = c("Shawn Kendrot",
 )
 
 selected_features_for_less_experienced_devs <- subset(selected_features, Author %in% less_experienced_devs)
-selected_features_for_less_experienced_devs <- selected_features_for_less_experienced_devs %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
-#fwrite(selected_features_for_less_experienced_devs, "selected_features_for_less_experienced_devs.csv")
-#selected_features_for_less_experienced_devs <- read.csv("selected_features_for_less_experienced_devs.csv", header=T)
-#selected_features_for_less_experienced_devs$month <- as.Date(selected_features_for_less_experienced_devs$month)
+#fwrite(selected_features_for_less_experienced_devs, "selected_features_for_less_experienced_devs_not_grouped_by_month.csv")
+selected_features_for_less_experienced_devs_groupped_by_month <- selected_features_for_less_experienced_devs %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
+#fwrite(selected_features_for_less_experienced_devs_groupped_by_month, "selected_features_for_less_experienced_devs_groupped_by_month.csv")
+#selected_features_for_less_experienced_devs_groupped_by_month <- read.csv("selected_features_for_less_experienced_devs_groupped_by_month.csv", header=T)
+#selected_features_for_less_experienced_devs_groupped_by_month$month <- as.Date(selected_features_for_less_experienced_devs_groupped_by_month$month)
 
 #8. Select subset of data after 2016 and calculate avarege occurrence of features for less experienced developers by month
+selected_features_for_less_experienced_devs_groupped_by_month <- subset(selected_features_for_less_experienced_devs_groupped_by_month, month >= as.Date("2016-01-01"))
+selected_features_for_less_experienced_devs_groupped_by_month <- subset(selected_features_for_less_experienced_devs_groupped_by_month, month < as.Date("2020-05-01"))
+#fwrite(selected_features_for_less_experienced_devs, "selected_features_for_less_experienced_devs.csv")
+
 selected_features_for_less_experienced_devs <- subset(selected_features_for_less_experienced_devs, month >= as.Date("2016-01-01"))
 selected_features_for_less_experienced_devs <- subset(selected_features_for_less_experienced_devs, month < as.Date("2020-05-01"))
+fwrite(selected_features_for_less_experienced_devs, "selected_features_for_less_experienced_devs.csv")
 
-le_rowSums <- rowSums(selected_features_for_less_experienced_devs[-1])
+le_rowSums <- rowSums(selected_features_for_less_experienced_devs_groupped_by_month[-1])
 le_number_of_months = length(le_rowSums)
 le_devs_average = sum(le_rowSums)/le_number_of_months # ~ 350 per month    (10 less experienced developers used all 21 features 350 times per month)
 le_devs_average

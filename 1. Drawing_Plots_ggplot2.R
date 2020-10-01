@@ -26,6 +26,11 @@ selected_features <- features %>% select(Id,Author,DateTime,CS70_1,CS70_2,CS70_3
 features_groupped_by_month <- selected_features %>% group_by(month=floor_date(DateTime, "month")) %>% summarize(CS70_1 = sum(CS70_1),CS70_2 = sum(CS70_2),CS70_3 = sum(CS70_3),CS70_5 = sum(CS70_5),CS70_6 = sum(CS70_6),CS70_7 = sum(CS70_7),CS70_8 = sum(CS70_8),CS70_9 = sum(CS70_9),CS71_1 = sum(CS71_1),CS71_2 = sum(CS71_2),CS71_3 = sum(CS71_3),CS72_1 = sum(CS72_1),CS73_1 = sum(CS73_1 ),CS73_2 = sum(CS73_2),CS80_2 = sum(CS80_2),CS80_3 = sum(CS80_3),CS80_4 = sum(CS80_4),CS80_6 = sum(CS80_6),CS80_7 = sum(CS80_7),CS80_8 = sum(CS80_8),CS80_9 = sum(CS80_9))
 features_groupped_by_month_after_2016 <- subset(features_groupped_by_month, month >= as.Date("2016-01-01"))
 
+#Replace outlier 10965 with 0
+#features_groupped_by_month_after_2016[features_groupped_by_month_after_2016$CS70_3 > 10000, "CS70_3"] = 0
+
+
+
 #we can write data to file
 fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
 #features_groupped_by_month_after_2016 <- read.csv("features_groupped_by_month_after_2016.csv", header=T)
