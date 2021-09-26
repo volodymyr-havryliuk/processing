@@ -42,7 +42,7 @@ group_by(features_for_conference, FeatureId) %>%
 ggboxplot(features_for_conference, x = "FeatureId", y = "Occurrences",
           color = "Occurrences",
           order = c("CS70_1", "CS70_6", "CS70_9", "CS73_2", "CS80_2", "CS80_3", "CS80_8"),
-          ylab = "Occurrences", xlab = "Treatment")
+          ylab = "Occurrences", xlab = "Feature Id")
 
 ggline(features_for_conference, x = "FeatureId", y = "Occurrences",
        add = c("mean_se", "jitter"),

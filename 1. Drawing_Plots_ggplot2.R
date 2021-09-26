@@ -31,7 +31,7 @@ features_groupped_by_month_after_2016 <- subset(features_groupped_by_month, mont
 
 
 
-#we can write data to file
+#we can write data to fileread.csv
 fwrite(features_groupped_by_month_after_2016, "features_groupped_by_month_after_2016.csv")
 #features_groupped_by_month_after_2016 <- read.csv("features_groupped_by_month_after_2016.csv", header=T)
 #features_groupped_by_month_after_2016$month <- as.Date(features_groupped_by_month_after_2016$month)
